@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskForm from './TaskForm';
 import Task from './Task';
 import '../hojas-de-estilo/TaskList.css';
@@ -28,7 +28,21 @@ function TaskList() {
       return tarea;
     });
     setTareas(tareasActualizadas);
-  }
+
+    localStorage.setItem("tareas", JSON.stringify(tareasActualizadas))
+  };
+  
+  useEffect(() => {
+    const localStorageData = localStorage.getItem("tareas");
+    if(localStorageData){
+      try{
+        const storedTareas = JSON.parse(localStorageData);
+        setTareas(storedTareas);
+      }catch(err){
+        console.err("Error parsing favourite items from localStorage")
+      }
+    }
+  }, []);
   
   return (
     <>
