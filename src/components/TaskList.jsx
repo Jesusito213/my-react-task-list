@@ -7,7 +7,7 @@ export default function TaskList ({
     handleCompleteTask,
 }) {
      return (
-        <ul>
+        <ul> 
             {tasks.map(task =>( 
             <TaskItem
             key={task.id}

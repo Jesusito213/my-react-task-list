@@ -1,4 +1,4 @@
-import { useForms } from "../hooks/useForms"
+import { useForms } from "../hooks/useForm"
 
 export default function Task ({handleNewTask}) {
 
@@ -30,9 +30,9 @@ export default function Task ({handleNewTask}) {
         value={description}
         onChange={onInputChange}
         placeholder="New Task"
-        />,
+        />
         <button className="btn-add" type="submit">+</button>
-        </form>         
+       </form>         
      )
       
 }

@@ -15,20 +15,23 @@
 
 body {
 	background-color: #27282e;
-	color: #e5383b;
+	color: #4d73ef;
 }
 
 .card-to-do {
+	margin: 100px;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 	padding: 25px;
 	border-radius: 20px;
 	width: 700px;
-	background-color: aliceblue;
+	background-color: #000000;
 	
 }
 
 h1 {
 	text-align: center;
+	color: #00b4d8;
+	padding-bottom: 35px;
 }
 
 .counter-todos {
@@ -41,8 +44,15 @@ h1 {
 	font-weight: 500;
 }
 
-.counter-todos span {
-	color: #f29559;
+.numero-tareas {
+	color: #59f29b;
+	font-weight: 700;
+	font-size: 24px;
+	margin-left: 10px;
+}
+
+.numero-pendientes {
+	color: #ff1c1c;
 	font-weight: 700;
 	font-size: 24px;
 	margin-left: 10px;
@@ -74,7 +84,9 @@ ul li form {
 	flex: 1;
 	display: flex;
 	justify-content: space-between;
+	min-width: 450px;
 }
+
 
 .input-update {
 	border: none;
@@ -91,12 +103,17 @@ ul li form {
 	width: 24px;
 	height: 24px;
 	border-radius: 20px;
-	border: 2px solid var(--verde);
+	border: 2px solid #18ba6c;
 	cursor: pointer;
 }
 
 .container-complete.active {
-	background-color: var(--verde);
+	background-color: #59f29b;
+}
+
+.input-update {
+	border: 2px solid rgb(46, 46, 46);
+	border-radius: 10px;
 }
 
 .text-decoration-dashed {
@@ -244,59 +261,15 @@ form {
     --state-hamburguer:scale(0);
 }
 
-.nav__logo{
+.nav_logo{
     font-size: 2.5rem;
     z-index: 1;
 }
 
-.nav__hamburguer, 
-.nav__close{
-    cursor: pointer;
-    grid-column: -2/-1;
-    grid-row: 1/2;
-    transition: .4s transform;
+.nav_item {
+	color: #09a129;
 }
 
-.nav__hamburguer{
-    transform: var(--state-hamburguer);
-}
-
-.nav__close{
-    transform: var(--state-close);
-}
-
-.nav__icon{
-    width: 40px;
-}
-
-.nav__links{
-    background-color: #000;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-
-    display: grid;
-    align-content: center;
-    gap: 2em;
-    padding-left: 5%;
-
-    transform: var(--state-menu);
-    transition: .3s transform;
-}
-
-.nav__item{
-    list-style: none;
-}
-
-.nav__link{
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-}
 
 @media (min-width:768px) {
     .nav{

@@ -1,5 +1,5 @@
 import { FaEdit } from "react-icons/fa";
-import { useForms } from "../hooks/useForms";
+import { useForms } from "../hooks/useForm";
 import { useRef, useState } from "react";
 
 export default function TaskEdit ({task, handleUpdateTask}) {
@@ -27,14 +27,14 @@ export default function TaskEdit ({task, handleUpdateTask}) {
        <form onSubmit={onSubmitUpdate}>
        <input
        type='text'
-       className={`input-update ${task.complete ? 'text-decoration-dashed' : ''}`}
+       className={`input-update ${task.complete ? 'text-decoration-dashed' : ' '}`}
        name="updateDescription"
        value= {updateDescription}
        onChange={onInputChange}
-       placeholder="que hay que hacer"
+       placeholder=" Edita o elimina esta tarea..."
        readOnly={disabled}
        ref={focusInputRef}
-       />,
+       />
        <button className="btn-edit" type="submit"><FaEdit/></button>
        </form>         
     )
