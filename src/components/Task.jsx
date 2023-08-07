@@ -1,22 +1,38 @@
-import React from 'react';
-import '../hojas-de-estilo/Task.css';
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useForms } from "../hooks/useForm"
 
-function Task({ id, texto, completada, completarTarea, eliminarTarea }) {
-  return (
-    <div className={completada ? 'tarea-contenedor completada' : 'tarea-contenedor'}>
-      <div 
-        className='tarea-texto'
-        onClick={() => completarTarea(id)}>
-        {texto}
-      </div>
-      <div 
-        className='tarea-contenedor-iconos'
-        onClick={() => eliminarTarea(id)}>
-        <AiOutlineCloseCircle className='tarea-icono' />
-      </div>
-    </div>
-  );    
+export default function Task ({handleNewTask}) {
+
+   const {description, onInputChange, onResetForm} = useForms ({
+      description: '',
+   });
+
+   const onFormSubmit = e => {
+      e.preventDefault();
+      
+      if(description.length <= 1) return
+
+      let newTask = {
+         id: new Date().getTime(),
+         description: description,
+         complete : false,
+      }
+
+      handleNewTask(newTask);
+      onResetForm();
+  }
+
+   return (
+       <form onSubmit={onFormSubmit}>
+        <input
+        type='text'
+        className='input-add'
+        name="description"
+        value={description}
+        onChange={onInputChange}
+        placeholder="New Task"
+        />
+        <button className="btn-add" type="submit">+</button>
+       </form>         
+     )
+      
 }
-
-export default Task;

@@ -1,30 +1,23 @@
-import TaskForm from './TaskForm';
-import Task from './Task';
-import '../hojas-de-estilo/TaskList.css';
-import { useOptimize } from '../hooks/useOptimize';
+import TaskItem from "./TaskItem";
 
-function TaskList() {
-
-  const {agregarTarea, eliminarTarea, completarTarea, tareas} = useOptimize()
-  
-  return (
-    <>
-      <TaskForm onSubmit={agregarTarea} />
-      <div className='tareas-lista-contenedor'>
-        {
-          tareas.map((tarea) =>
-            <Task
-              key={tarea.id}
-              id={tarea.id} 
-              texto={tarea.texto}
-              completada={tarea.completada}
-              completarTarea={completarTarea}
-              eliminarTarea={eliminarTarea} />
-          ) 
-        }
-      </div>
-    </>
-  );    
+export default function TaskList ({
+    tasks,
+    handleUpdateTask,
+    handleDeleteTask,
+    handleCompleteTask,
+}) {
+     return (
+        <ul> 
+            {tasks.map(task =>( 
+            <TaskItem
+            key={task.id}
+            task={task}
+            handleUpdateTask={handleUpdateTask}
+            handleDeleteTask={handleDeleteTask}
+            handleCompleteTask={handleCompleteTask}
+            />
+            ))}
+        </ul>
+        
+     )
 }
-
-export default TaskList;
