@@ -1,24 +1,24 @@
-import "./App.css";
-import TaskList from "./components/TaskList.jsx";
+import './App.css';
+import 'react-icons/fa';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Menu from './pages/Menu';
+import SobreNosotrosPage from './pages/SobreNosotrosPage';
+import TareaPage from './pages/TareaPage';
+import HomePage from '../pages/Homepage';
 
-function App() {
-	return (
-		<div className="aplicacion-tareas">
-			<div className="tareas-lista-principal">
-				<h1>Mi lista de tareas</h1>
-				<TaskList />
-			</div>
-		</div>
-	);
+export function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Menu />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/sobre-nosotros' element={<SobreNosotrosPage />} />
+          <Route path='/Tarea/:id' element={<TareaPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
-
-// // Cada tarea debe tener una descripción y un estado de completada o pendiente, utiliza 
-// valores booleanos.
-// // Debes almacenar las tareas y su estado en localStorage cada vez que cambia alguna tarea.
-//  Revisa la documentacion de localStorage para recordar como escribir valores.
-// // Usa el hook useEffect para cargar el listado de tareas desde localStorage. 
-// Con esto el usuario podra ver sus tareas cuando vuelva o recargue a la aplicación.
-// // Publica tu código en Github, en tu repositorio my-react-task-list crea un branch llamado
-//  project-2 y compártelo con nosotros. 👍🏼⬇️
