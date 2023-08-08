@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./TaskHeader";
-import Task from "./Task";
-import TaskList from "./TaskList";
+import Header from "../components/TaskHeader";
+import Task from "../components/Task";
+import TaskList from "../components/TaskList";
 import { useTask } from "../hooks/useTask";
 
 export default function TaskAppPage() {
