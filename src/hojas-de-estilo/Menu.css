@@ -8,3 +8,8 @@ a {
   color: #10ff50;
   font-size: 30px;
 }
+
+li {
+  list-style: none;
+  margin: 10px;
+}

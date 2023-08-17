@@ -1,5 +1,14 @@
-export default function Header () {
-    return (
-        <h1>¡Escribe una Tarea!</h1>
-    )
+import { Heading } from "@chakra-ui/react";
+
+export default function Header() {
+	return (
+		<Heading
+			size="lg"
+			fontSize="50px"
+			color="#00b4d8"
+			textAlign="center"
+			pb="35px">
+			Lista de Tareas
+		</Heading>
+	);
 }
