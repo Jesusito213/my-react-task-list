@@ -1,21 +1,63 @@
-import './App.css';
-import 'react-icons/fa';
-import MenuNav from './pages/MenuNav'
-import Home from './pages/Home'
-import SobreMi from './pages/SobreMi'
-import TaskAppPage from './pages/TaskAppPage';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import "./App.css";
+import MainDiv from "./components/MainDiv.jsx";
+import { lazy, Suspense } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem, useColorMode } from "@chakra-ui/react";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
-export function App() {
+const Home = lazy(() => import("./pages/HomePage"));
+const AboutUs = lazy(() => import("./pages/AboutUsPage"));
+const TaskPage = lazy(() => import("./pages/TaskAppPage"));
+
+function App() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <div> <BrowserRouter>
-    <MenuNav />
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/sobre-mi' element={<SobreMi />} />
-      <Route path='/Tarea/:id' element={<TaskAppPage />} />
-    </Routes>
-  </BrowserRouter>
+    <div className="container mainTask d-block">
+      <nav className="mt-3 mb-3 d-flex justify-content-between">
+        <Breadcrumb>
+          <BreadcrumbItem >
+            <Link to="/" className="mr-3">
+              Home
+            </Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <Link to="/AboutUs" className="mr-3">
+              AboutUs
+            </Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem isCurrentPage>
+            <Link to="/task">Tasks</Link>
+          </BreadcrumbItem>
+        </Breadcrumb>
+        <div>
+          <button onClick={toggleColorMode} style={{ outline: "none" }}>
+            {colorMode === "light" ? (
+              <MoonIcon boxSize={7} />
+            ) : (
+              <SunIcon boxSize={7} />
+            )}
+          </button>
+        </div>
+      </nav>
+      <Suspense fallback={<p>Cargando...</p>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <MainDiv />
+              </>
+            }
+          ></Route>
+          <Route path="/aboutus" element={<AboutUs />}></Route>
+          <Route path="/task" element={<TaskPage />}></Route>
+          <Route path="/*" element={<p>Page Not Found</p>}></Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

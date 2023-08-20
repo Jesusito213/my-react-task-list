@@ -1,44 +1,45 @@
-import React from "react";
-import Header from "../components/TaskHeader";
-import Task from "../components/Task";
-import TaskList from "../components/TaskList";
-import { useTask } from "../hooks/useTask";
+import useTask from "../hooks/useTask";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from "@chakra-ui/react";
 
-export default function TaskAppPage() {
-	const {
-		tasks,
-		tasksCount,
-		pendingTasksCount,
-		handleNewTask,
-		handleDeleteTask,
-		handleCompleteTask,
-		handleUpdateTask,
-	} = useTask();
+const TareasPage = () => {
+  const [states] = useTask();
+  const { arrayTask, taskPending } = states;
+  return (
+    <div>
+      <h1>Aquí se guardan todas tus tareas</h1>
+      <TableContainer>
+        <Table size="sm">
+          <Thead>
+            <Tr>
+              <Th>Id</Th>
+              <Th>Name</Th>
+              <Th>Description</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {arrayTask.map((task, key) => {
+              return (
+                <Tr key={key}>
+                  <Td>{task.id}</Td>
+                  <Td>{task.name}</Td>
+                  <Td>{task.description}</Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+};
 
-	return (
-		<center>
-			<div className="card-to-do">
-				<div className="counter-todos">
-					<h3>
-						Tareas: <span className="numero-tareas">{tasksCount}</span>
-					</h3>
-					<h3>
-						Tareas Pendientes:{" "}
-						<span className="numero-pendientes">{pendingTasksCount}</span>
-					</h3>
-				</div>
-
-				<div className="add-todo">
-					<Header />
-					<Task handleNewTask={handleNewTask} />
-					<TaskList
-						tasks={tasks}
-						handleUpdateTask={handleUpdateTask}
-						handleDeleteTask={handleDeleteTask}
-						handleCompleteTask={handleCompleteTask}
-					/>
-				</div>
-			</div>
-		</center>
-	);
-}
+export default TareasPage;
